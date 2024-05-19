@@ -39,17 +39,25 @@
 
     <script>
         function confirmDelete(id) {
+            ///mensaje mostrado
             alertify.confirm("Seguro que desea Eliminar",
                 function() {
+                    ///crea un fomulario 
                     let form = document.createElement('form');
                     form.method = 'POST';
+                    //ruta que se encargara de procesar la solicitud 
                     form.action = `/dashboard/user/${id}`
+                    //escribe las directivas
                     form.innerHTML = '@csrf @method('DELETE')';
+                    //guarda el formulario dentro del cuerpo del html
                     document.body.appendChild(form);
+                    //ejecuta el submit
                     form.submit();
+                    //si aceptamos muestra la alerta confirmado
                     alertify.success('Confirmado');
                 },
                 function() {
+                    //si cancelamos muestra la alerta cancelado
                     alertify.error('Cancelado');
                 });
         }

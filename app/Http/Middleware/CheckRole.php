@@ -13,11 +13,14 @@ class CheckRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$role)
     {
-        if ($request->user() && $request->user()->hasRole('admin')) {
+        //Comprueba si el rol del usuario es igual al nombre del rol que le pasamos 
+        if ($request->user() && $request->user()->hasRole($role)) {
+            //deja pasar el flujo con la respuesta.
             return $next($request);
         }
-        return redirect()->route('home');
+        //redirije a home
+        return redirect('/');
     }
 }

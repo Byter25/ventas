@@ -43,6 +43,8 @@ class UserController extends Controller
             'email' => $req->email,
             'password' => Hash::make($req->password),
         ]);
+        //si el rol es 1 asigna el rol admin al usuario
+        // si no le asigna user
         if ($req->rol === "1") {
             $user->assignRole('admin');
         } else {

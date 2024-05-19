@@ -1,6 +1,6 @@
 @extends('dashboard')
 @section('info')
-    <form method="POST" action="{{ route('user.create') }}" class="grid grid-cols-3 gap-5">
+    <form method="POST" action="{{ route('user.store') }}" class="grid grid-cols-3 gap-5">
         @csrf
         <p class="py-2 px-4 text-right col-start-1">Nombre</p>
         <input type="text" placeholder="Alexander Saavedra" name="name" required autofocus
@@ -36,6 +36,5 @@
             class="col-start-1 font-bold px-4 py-2 bg-red-600 rounded-md hover:bg-red-700 max-w-40 ml-auto">Cancelar</a>
         <button type="submit"
             class="col-start-2 font-bold px-4 py-2 bg-orange-600 rounded-md hover:bg-orange-700 max-w-40 m-auto">Guardar</button>
-
     </form>
 @endsection
