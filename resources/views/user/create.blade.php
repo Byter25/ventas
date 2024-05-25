@@ -1,25 +1,40 @@
 @extends('dashboard')
 @section('info')
-    <form method="POST" action="{{ route('user.store') }}" class="grid grid-cols-3 gap-5">
+    <form method="POST" action="{{ route('user.store') }}" class="grid grid-cols-3 gap-5 uppercase">
         @csrf
         <p class="py-2 px-4 text-right col-start-1">Nombre</p>
-        <input type="text" placeholder="Alexander Saavedra" name="name" required autofocus
+        <input type="text" placeholder="Alexander Saavedra" name="nombre" required autofocus
             class="border border-solid border-orange-600 py-2 px-4 rounded-md outline-none shadow-orange-600">
-
+        <p class="py-2 px-4 text-right col-start-1">dni</p>
+        <input type="number" placeholder="87654321" name="dni" required min="8"
+                class="border border-solid border-orange-600 py-2 px-4 rounded-md outline-none shadow-orange-600">
+        @error('dni')
+            <span class="text-red-600 py-2 px-4">{{ $message }}</span>
+        @enderror
+        <p class="py-2 px-4 text-right col-start-1">telefono</p>
+        <input type="number" placeholder="999444666" name="telefono" required min="9"
+                class="border border-solid border-orange-600 py-2 px-4 rounded-md outline-none shadow-orange-600">
+        @error('telefono')
+            <span class="text-red-600 py-2 px-4">{{ $message }}</span>
+        @enderror
+        <p class="py-2 px-4 text-right col-start-1">Ubicacion</p>
+        <input type="text" placeholder="san clamente calle independencia" name="ubicacion" required
+            class="border border-solid border-orange-600 py-2 px-4 rounded-md outline-none shadow-orange-600">
+        @error('ubicacion')
+            <span class="text-red-600 py-2 px-4">{{ $message }}</span>
+        @enderror
         <p class="py-2 px-4 text-right col-start-1">Usuario</p>
         <input type="text" placeholder="juanito1234" name="user" required
             class="border border-solid border-orange-600 py-2 px-4 rounded-md outline-none shadow-orange-600">
         @error('user')
             <span class="text-red-600 py-2 px-4">{{ $message }}</span>
         @enderror
-
         <p class="py-2 px-4 text-right col-start-1">Email</p>
         <input type="email" placeholder="email@ejemplo.com" name="email" required
             class="border border-solid border-orange-600 py-2 px-4 rounded-md outline-none shadow-orange-600">
         @error('email')
             <span class="text-red-600 py-2 px-4">{{ $message }}</span>
         @enderror
-
         <p class="py-2 px-4 text-right col-start-1">Contraseña</p>
         <input type="password" placeholder="contraseña" name="password" required min="8"
             class="border border-solid border-orange-600 py-2 px-4 rounded-md outline-none shadow-orange-600">

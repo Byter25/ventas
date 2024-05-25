@@ -15,7 +15,7 @@
                 @foreach ($data as $a)
                     <tr>
                         <td class="px-5 py-2">{{ $a->id }}</td>
-                        <td class="px-5 py-2">{{ $a->name }}</td>
+                        <td class="px-5 py-2">{{ $a->nombre }}</td>
                         <td class="px-5 py-2">{{ $a->user }}</td>
                         <td class="px-5 py-2">
                             @foreach ($a->roles as $rol)
@@ -42,10 +42,10 @@
             ///mensaje mostrado
             alertify.confirm("Seguro que desea Eliminar",
                 function() {
-                    ///crea un fomulario 
+                    ///crea un fomulario
                     let form = document.createElement('form');
                     form.method = 'POST';
-                    //ruta que se encargara de procesar la solicitud 
+                    //ruta que se encargara de procesar la solicitud
                     form.action = `/dashboard/user/${id}`
                     //escribe las directivas
                     form.innerHTML = '@csrf @method('DELETE')';
