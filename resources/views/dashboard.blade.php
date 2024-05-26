@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="h-screen dark:bg-slate-900 flex justify-center dark:text-white">
-        <div class="mx-20 my-10  w-full min-h-52 rounded-md shadow-2xl shadow-black">
-            <ul class="flex gap-5 p-5">
-                <x-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
-                    {{ __('Index') }}</x-link>
-                <x-link>Productos</x-link>
-            </ul>
+    <div class="h-screen dark:bg-slate-900 flex  dark:text-white">
+        <ul class="flex flex-col min-w-[200px] sticky top-14 shadow-md shadow-black bg-gray-800">
+            <x-selectorLink link="user.index" nombre="usuario"></x-selectorLink>
+            <x-selectorLink link="producto.index" nombre="productos"></x-selectorLink>
+            <x-selectorLink link="categoria.index" nombre="categorias"></x-selectorLink>
+            <x-selectorLink link="modelo.index" nombre="modelos"></x-selectorLink>
+        </ul>
+        <div class="">
             @yield('info')
         </div>
     </div>

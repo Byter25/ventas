@@ -1,19 +1,19 @@
 @extends('dashboard')
 @section('info')
-    <div class="flex">
-        <table class="max-w-full m-10 dark:text-white">
+    <div class="flex justify-evenly dark:bg-black">
+        <table class="m-10 dark:text-white border border-collapse">
             <thead>
-                <tr>
-                    <th class="p-2 ">ID</th>
+                <tr class="border">
+                    <th class="p-2">ID</th>
                     <th class="p-2">Nombre</th>
                     <th class="p-2">Usuario</th>
                     <th class="p-2">Rol</th>
                     <th class="p-2"> Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="border">
                 @foreach ($data as $a)
-                    <tr>
+                    <tr class="border">
                         <td class="px-5 py-2">{{ $a->id }}</td>
                         <td class="px-5 py-2">{{ $a->nombre }}</td>
                         <td class="px-5 py-2">{{ $a->user }}</td>
