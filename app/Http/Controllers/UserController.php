@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 class UserController extends Controller
 {
@@ -13,8 +14,12 @@ class UserController extends Controller
      */
     public function index()
     {
+        $columns = Schema::getColumnListing('users');
+        $columns = array_diff($columns, ['email_verified_at','password','created_at', 'updated_at','remember_token']);
+
+
         $data = User::all();
-        return view('user.index', compact('data'));
+        return view('user.index', compact('data','columns'));
     }
 
     /**

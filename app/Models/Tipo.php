@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Tipo extends Model
 {
     use HasFactory;
+    protected $fillable = ['nombre'];
 }

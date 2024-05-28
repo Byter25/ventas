@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Medida extends Model
 {
     use HasFactory;
+    protected $fillable = ['alto','ancho','fondo'];
 }

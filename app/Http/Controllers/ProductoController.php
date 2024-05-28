@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 class ProductoController extends Controller
 {
     /**
@@ -11,8 +12,12 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $data = Producto::all();
-        return view('producto.index', compact('data'));
+        $columns = Schema::getColumnListing('productos');
+        $columns = array_diff($columns, ['created_at', 'updated_at']);
+
+        $data = Producto::with(['modelo', 'color', 'medidas', 'marca'])->get();
+
+        return view('producto.index', compact('data','columns'));
     }
 
     /**
@@ -28,7 +33,32 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Guardar los datos del producto en la base de datos
+        $product = new Producto();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->save();
+
+        // Manejar la subida de las imágenes
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('images', 'public'); // Almacenar en el disco 'public'
+
+                // Guardar la ruta de la imagen en la base de datos
+                $productImage = new ProductImage();
+                $productImage->product_id = $product->id;
+                $productImage->image_path = $path;
+                $productImage->save();
+            }
+        }
+
+        return redirect()->route('products.index')->with('success', 'Producto creado con éxito');
     }
 
     /**

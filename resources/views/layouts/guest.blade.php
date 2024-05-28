@@ -9,7 +9,9 @@
 </head>
 
 <body class="dark:bg-slate-900">
-    @yield('content')
+    <div class="flex flex-col justify-center items-center h-screen">
+        @yield('content')
+    </div>
 </body>
 
 </html>

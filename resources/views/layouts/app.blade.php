@@ -38,11 +38,11 @@
             right: 0;
         }
     </style>
-    <header class="flex h-14  z-50 justify-between items-center  sticky top-0 w-full bg-yellow-400">
-        <x-flex>
+    <header class="flex h-14 z-50 px-5 justify-between items-center  sticky top-0 w-full bg-yellow-400">
+        <div class="flex gap-5">
             <img src="" alt="logo">
             <span class=" text-inherit">logo</span>
-        </x-flex>
+        </div>
         @include('navbar')
         @guest
             <a href="{{ route('login') }}"
