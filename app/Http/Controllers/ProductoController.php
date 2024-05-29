@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Color;
+use App\Models\Marca;
+use App\Models\Medida;
+use App\Models\Modelo;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Schema;
+
 class ProductoController extends Controller
 {
     /**
@@ -16,8 +22,7 @@ class ProductoController extends Controller
         $columns = array_diff($columns, ['created_at', 'updated_at']);
 
         $data = Producto::with(['modelo', 'color', 'medidas', 'marca'])->get();
-
-        return view('producto.index', compact('data','columns'));
+        return view('producto.index', compact('data', 'columns'));
     }
 
     /**
@@ -68,13 +73,22 @@ class ProductoController extends Controller
     {
         //
     }
-
+    public function showAll()
+    {
+        $data = Producto::with(['modelo', 'color', 'medidas', 'marca'])->get();
+        return view('producto.show', compact('data'));
+    }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $data = Producto::findOrFail($id);
+        $modelos = Modelo::all();
+        $colores = Color::all();
+        $medidas = Medida::all();
+        $marcas = Marca::all();
+        return view('producto.edit', compact('data', 'modelos', 'colores', 'medidas', 'marcas'));
     }
 
     /**

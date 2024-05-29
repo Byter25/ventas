@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
 
 Route::get('/home', HomeController::class)->name('home');
+Route::get('/productos', [ProductoController::class,'showAll'])->name('productos');
 Route::get('/', function () {
     return redirect('home');
 });
